@@ -2,18 +2,10 @@
 
 spl_autoload_register('myAutoloader');
 
-function myAutoloader($className) {
-    $fullpaths = [
-        'Config/' .$className. '.php',
-        'Controller/' .$className. '.php',
-        'Databaeses/' .$className. '.php'
-    ];
+function myAutoloader($className)
+{
+    $className = str_replace('\\', DIRECTORY_SEPARATOR, $className);
+    $fullPath = $className. '.php';
 
-    foreach ($fullpaths as $fullpath) {
-        if (!file_exists($fullpath)) {
-            return false;
-        }
-
-        require_once $fullpath;
-    }
+    require_once $fullPath;
 }
