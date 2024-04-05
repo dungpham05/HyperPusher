@@ -1,0 +1,18 @@
+// Docker // create an application
+docker build -t [custom-name-image] .    // build an image
+docker run -it [image-id] /bin/bash    // exec and access to the image
+docker run --name [custom-name-container] -d -p 8080:80 [image-id]    // create container depend on image
+docker exec -it [container-id] /bin/bash    // exec to container
+docer stop [container-id]
+
+// Docker-compose // associate there application
+docker-compose build
+docker-compose up -d
+docker-compose down
+
+docker exec <nginx_container_id> nginx -s reload
+
+https://techmaster.vn/posts/37107/cai-dat-moi-truong-lap-trinh-nginx-php-bang-docker-compose
+https://blog.haposoft.com/tim-hieu-ve-docker-phan-7-lam-viec-voi-docker-compose/
+
+RUN ssh-keyscan github.com >> ~/.ssh/known_hosts
