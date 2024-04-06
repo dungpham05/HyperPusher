@@ -15,6 +15,8 @@ class Welcome extends Container
         $requestMethod = $_SERVER['REQUEST_METHOD'];
         $pathView = __DIR__ . '/Views/';
         $pathDatabase = __DIR__ . '/Databases/';
+        $patternBlog = '/blog\/id\/*\/(en|vn)/s';
+        $detailBlog = preg_match($patternBlog, $resquestURI) == true;
 
         if ($requestMethod === 'GET') {
             switch ($resquestURI) {
@@ -23,6 +25,14 @@ class Welcome extends Container
                     break;
                 case '/welcome':
                     require_once $pathView . 'welcome.php';
+                    break;
+                case '/blog':
+                    $dispatch = $this->resolve(Controllers\BlogController::class, []);
+                    $dispatch->show();
+                    break;
+                case $detailBlog:
+                    $dispatch = $this->resolve(Controllers\BlogController::class, []);
+                    $dispatch->detail($_GET['id'], $_GET['language']);
                     break;
                 case '/login':
                     require_once $pathView . 'login.php';
@@ -48,6 +58,18 @@ class Welcome extends Container
                 case '/register':
                     $dispatch = $this->resolve(Controllers\AuthController::class, []);
                     $dispatch->register();
+                    break;
+                case '/blog/create':
+                    $dispatch = $this->resolve(Controllers\BlogController::class, []);
+                    $dispatch->create();
+                    break;
+                case '/blog/edit':
+                    $dispatch = $this->resolve(Controllers\BlogController::class, []);
+                    $dispatch->edit($_POST['id']);
+                    break;
+                case '/blog/delete':
+                    $dispatch = $this->resolve(Controllers\BlogController::class, []);
+                    $dispatch->delete($_POST['id']);
                     break;
 
                 default:

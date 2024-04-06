@@ -11,7 +11,7 @@ class AlterDB extends Connection
         parent::__construct();
     }
 
-    public function createDatabaseIfNotExist() {
+    public function createTableUsersIfNotExist() {
         $sql = "CREATE TABLE IF NOT EXISTS `users` (
             `id` int(11) NOT NULL auto_increment,
             `username` varchar(255) NOT NULL,
@@ -23,11 +23,29 @@ class AlterDB extends Connection
         $this->conn->query($sql);
 
         if ($this->conn->query($sql) === TRUE) {
-            echo "Table MyGuests created successfully";
+            echo "Table users created successfully";
+        } else {
+            echo "Error creating table: " . $this->conn->error;
+        }
+    }
+
+    public function createTableBlogsIfNotExist() {
+        $sql = "CREATE TABLE IF NOT EXISTS `blogs` (
+            `id` int(11) NOT NULL auto_increment,
+            `content_vn` varchar(255),
+            `content_en` varchar(255),
+            PRIMARY KEY (`id`)
+        )";
+
+        $this->conn->query($sql);
+
+        if ($this->conn->query($sql) === TRUE) {
+            echo "Table blogs created successfully";
         } else {
             echo "Error creating table: " . $this->conn->error;
         }
     }
 }
 
-(new AlterDB())->createDatabaseIfNotExist();
+(new AlterDB())->createTableUsersIfNotExist();
+(new AlterDB())->createTableBlogsIfNotExist();

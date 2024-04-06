@@ -10,7 +10,6 @@
     <form action="/login" method="post">
         <label for="username">Username:</label>
         <input id="username" name="username" required="" type="text" />
-        <?php  ?>
         <br><br>
         <label for="password">Password:</label> <input id="password" name="password" required="" type="password" />
         <br><br>
