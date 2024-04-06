@@ -14,21 +14,31 @@ class UserRepository implements UserRepositoryInterface
         $this->user = $user;
     }
 
-    public function loginUser($username, $password)
+    public function loginUser($username, $password): array
     {
         try {
-            $this->user->loginUser($username, $password);
+            $result = $this->user->loginUser($username, $password);
         } catch (\Throwable $th) {
-            var_dump($th->getMessage());
+            $result = [
+                "message" => $th->getMessage(),
+                "status" => "fail"
+            ];
         }
+
+        return $result;
     }
 
-    public function registerUser($username, $password)
+    public function registerUser($username, $password): array
     {
         try {
-            $this->user->registerUser($username, $password);
+            $result = $this->user->registerUser($username, $password);
         } catch (\Throwable $th) {
-            var_dump($th->getMessage());
+            $result = [
+                "message" => $th->getMessage(),
+                "status" => "fail"
+            ];
         }
+
+        return $result;
     }
 }

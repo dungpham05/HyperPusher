@@ -4,6 +4,6 @@ namespace Repositories;
 
 interface UserRepositoryInterface
 {
-    public function loginUser($username, $password);
-    public function registerUser($username, $password);
+    public function loginUser($username, $password): array;
+    public function registerUser($username, $password): array;
 }

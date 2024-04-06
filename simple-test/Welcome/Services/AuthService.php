@@ -13,28 +13,53 @@ class AuthService
         $this->userRepository = $userRepository;
     }
 
-    public function login()
+    public function login(): array
     {
+        $result = [];
+
         if (isset($_POST['login'])) {
             // Get the form data
             $username = $_POST['username'];
             $password = $_POST['password'];
-            // removes backslashes
+            // Removes backslashes
             $username = stripslashes($username);
             $password = stripslashes($_REQUEST['password']);
+            // Removes spaces
+            $username = trim($username);
+            $password = trim($password);
+            // Hash Password
+            $password = md5($password);
 
-            $this->userRepository->loginUser($username, $password);
+            $result = $this->userRepository->loginUser($username, $password);
+
+            $_SESSION['result'] = $result;
         }
+
+        return $result;
     }
 
-    public function register()
+    public function register(): array
     {
+        $result = [];
+
         if (isset($_POST['register'])) {
             // Get the form data
             $username = $_POST['username'];
             $password = $_POST['password'];
+            // Removes backslashes
+            $username = stripslashes($username);
+            $password = stripslashes($password);
+            // Removes spaces
+            $username = trim($username);
+            $password = trim($password);
+            // Hash Password
+            $password = md5($password);
 
-            $this->userRepository->registerUser($username, $password);
+            $result = $this->userRepository->registerUser($username, $password);
+
+            $_SESSION['result'] = $result;
         }
+
+        return $result;
     }
 }

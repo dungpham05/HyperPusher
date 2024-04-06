@@ -16,16 +16,24 @@ class AuthController
     public function login()
     {
         session_start();
-
         $response = $this->authService->login();
 
-        return $response;
+        if (isset($response['status']) && $response['status'] === 'success') {
+            header("Location: /welcome");
+        } else {
+            header("Location: /login");
+        }
     }
 
     public function register()
     {
+        session_start();
         $response = $this->authService->register();
 
-        return $response;
+        if (isset($response['status']) && $response['status'] === 'success') {
+            header("Location: /login");
+        } else {
+            header("Location: /register");
+        }
     }
 }

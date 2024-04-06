@@ -16,7 +16,8 @@ class AlterDB extends Connection
             `id` int(11) NOT NULL auto_increment,
             `username` varchar(255) NOT NULL,
             `password` varchar(255) NOT NULL,
-            PRIMARY KEY (`id`)
+            PRIMARY KEY (`id`),
+            UNIQUE (username)
         )";
 
         $this->conn->query($sql);
@@ -24,7 +25,7 @@ class AlterDB extends Connection
         if ($this->conn->query($sql) === TRUE) {
             echo "Table MyGuests created successfully";
         } else {
-            echo "Error creating table: " . $conn->error;
+            echo "Error creating table: " . $this->conn->error;
         }
     }
 }

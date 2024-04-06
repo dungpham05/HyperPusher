@@ -21,6 +21,9 @@ class Welcome extends Container
                 case '/':
                     require_once $pathView . 'index.php';
                     break;
+                case '/welcome':
+                    require_once $pathView . 'welcome.php';
+                    break;
                 case '/login':
                     require_once $pathView . 'login.php';
                     break;
@@ -43,7 +46,8 @@ class Welcome extends Container
                     $dispatch->login();
                     break;
                 case '/register':
-                    require_once $pathController . 'register.php';
+                    $dispatch = $this->resolve(Controllers\AuthController::class, []);
+                    $dispatch->register();
                     break;
 
                 default:
