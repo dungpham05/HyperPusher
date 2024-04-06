@@ -43,6 +43,10 @@ class Welcome extends Container
                 case '/alterdb':
                     require_once $pathDatabase . 'AlterDB.php';
                     break;
+                case '/task':
+                    $dispatch = $this->resolve(Controllers\TaskController::class, []);
+                    $dispatch->show();
+                    break;
 
                 default:
                     require_once $pathView . '404.php';
@@ -69,6 +73,18 @@ class Welcome extends Container
                     break;
                 case '/blog/delete':
                     $dispatch = $this->resolve(Controllers\BlogController::class, []);
+                    $dispatch->delete($_POST['id']);
+                    break;
+                case '/task/create':
+                    $dispatch = $this->resolve(Controllers\TaskController::class, []);
+                    $dispatch->create();
+                    break;
+                case '/task/edit':
+                    $dispatch = $this->resolve(Controllers\TaskController::class, []);
+                    $dispatch->edit($_POST['id']);
+                    break;
+                case '/task/delete':
+                    $dispatch = $this->resolve(Controllers\TaskController::class, []);
                     $dispatch->delete($_POST['id']);
                     break;
 

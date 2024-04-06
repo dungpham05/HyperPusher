@@ -20,7 +20,6 @@ class BlogController
     {
         $blogs = $this->blogService->show();
 
-        require_once __DIR__ . '/../Configs/MultipleText.php';
         require_once $this->pathViewBlog . '/MainBlog.php';
     }
 

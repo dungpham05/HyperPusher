@@ -45,7 +45,27 @@ class AlterDB extends Connection
             echo "Error creating table: " . $this->conn->error;
         }
     }
+
+    public function createTableTasksIfNotExist() {
+        $sql = "CREATE TABLE IF NOT EXISTS `tasks` (
+            `id` int(11) NOT NULL auto_increment,
+            `user_name` varchar(255),
+            `task_name` varchar(255),
+            `start_time` TIMESTAMP,
+            `expire_time` TIMESTAMP,
+            PRIMARY KEY (`id`)
+        )";
+
+        $this->conn->query($sql);
+
+        if ($this->conn->query($sql) === TRUE) {
+            echo "Table tasks created successfully";
+        } else {
+            echo "Error creating table: " . $this->conn->error;
+        }
+    }
 }
 
 (new AlterDB())->createTableUsersIfNotExist();
 (new AlterDB())->createTableBlogsIfNotExist();
+(new AlterDB())->createTableTasksIfNotExist();

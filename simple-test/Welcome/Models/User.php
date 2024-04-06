@@ -78,4 +78,21 @@ Class User extends Connection
 
         return $result;
     }
+
+    public function getAllUser(): array
+    {
+        $result = [];
+
+        $sql = "SELECT id, username FROM users";
+        $stmt = $this->conn->query($sql);
+
+        while ($row = $stmt->fetch_assoc()) {
+            $result[] = $row;
+        }
+
+        // Close the connection
+        $stmt->close();
+
+        return $result;
+    }
 }
