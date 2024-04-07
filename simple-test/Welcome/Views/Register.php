@@ -3,7 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login and Registration System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../Assets/Common.css">
+    <title>Registration system</title>
 </head>
 <body>
     <h1>Registration</h1>

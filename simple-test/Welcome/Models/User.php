@@ -23,7 +23,7 @@ Class User extends Connection
         $stmt->execute();
 
         // Check if the user exists
-        if ($stmt->execute()) {
+        if ($stmt->execute() && $stmt->get_result()->num_rows >= 1) {
             // Set the session variables
             $_SESSION['logged_in'] = true;
             $_SESSION['username'] = $username;
