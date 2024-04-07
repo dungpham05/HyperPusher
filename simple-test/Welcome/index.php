@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require __DIR__ . '/Includes/Autoload.php';
 
 class Welcome extends Container
