@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require __DIR__ . '/Includes/Autoload.php';
 
 class Welcome extends Container
@@ -24,6 +26,9 @@ class Welcome extends Container
                     require_once $pathView . 'Index.php';
                     break;
                 case '/welcome':
+                    if (!isset($_SESSION['username'])) {
+                        header("Location: /");
+                    }
                     require_once $pathView . 'Welcome.php';
                     break;
                 case '/blog':

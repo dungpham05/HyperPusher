@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../Assets/Common.css">
     <title><?php echo $blogTexts[$language]['detail']["title"] ?></title>
 </head>
 <body>

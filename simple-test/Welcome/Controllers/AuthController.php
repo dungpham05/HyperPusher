@@ -15,7 +15,6 @@ class AuthController
 
     public function login()
     {
-        session_start();
         $response = $this->authService->login();
 
         if (isset($response['status']) && $response['status'] === 'success') {
@@ -27,7 +26,6 @@ class AuthController
 
     public function register()
     {
-        session_start();
         $response = $this->authService->register();
 
         if (isset($response['status']) && $response['status'] === 'success') {
