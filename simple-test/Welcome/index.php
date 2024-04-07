@@ -21,10 +21,10 @@ class Welcome extends Container
         if ($requestMethod === 'GET') {
             switch ($resquestURI) {
                 case '/':
-                    require_once $pathView . 'index.php';
+                    require_once $pathView . 'Index.php';
                     break;
                 case '/welcome':
-                    require_once $pathView . 'welcome.php';
+                    require_once $pathView . 'Welcome.php';
                     break;
                 case '/blog':
                     $dispatch = $this->resolve(Controllers\BlogController::class, []);
@@ -35,10 +35,10 @@ class Welcome extends Container
                     $dispatch->detail($_GET['id'], $_GET['language']);
                     break;
                 case '/login':
-                    require_once $pathView . 'login.php';
+                    require_once $pathView . 'Login.php';
                     break;
                 case '/register':
-                    require_once $pathView . 'register.php';
+                    require_once $pathView . 'Register.php';
                     break;
                 case '/alterdb':
                     require_once $pathDatabase . 'AlterDB.php';
