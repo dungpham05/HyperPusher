@@ -4,3 +4,8 @@
 
 # run
 - http://simple-test/alterdb to create table
+
+# three practice
+- locolhost -> welcome
+- locolhost/blog -> blog
+- lolcalhost/task -> schedule
